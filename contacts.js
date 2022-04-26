@@ -25,34 +25,42 @@ function listContacts() {
 }
 
 function getContactById(contactId) {
-  return readContacts().then((response) => {
+  return readContacts()
+    .then((response) => {
       return response.find((contact) => contact.id === contactId);
-  });
+    })
+    .catch((error) => console.log(error));;
 }
 
 function removeContact(contactId) {
-  readContacts().then((response) => {
-    const newArray = response.filter((contact) => contact.id.toString() !== contactId);
-    const elements = newArray.length;
-    for (let i = 0; i < elements; i++) {
-      newArray[i].id = i + 1;
-    }
-    stringArray = JSON.stringify(newArray);
-    fs.writeFile(contactsPath, stringArray);
-  });
+  readContacts()
+    .then((response) => {
+      const newArray = response.filter(
+        (contact) => contact.id.toString() !== contactId
+      );
+      const elements = newArray.length;
+      for (let i = 0; i < elements; i++) {
+        newArray[i].id = i + 1;
+      }
+      stringArray = JSON.stringify(newArray);
+      fs.writeFile(contactsPath, stringArray);
+    })
+    .catch((error) => console.log(error));;
 }
 
 function addContact(name, email, phone) {
-  readContacts().then((response) => {
-    const contact = { id: 0, name: name, email: email, phone: phone };
-    response.push(contact);
-    const elements = response.length;
-    for (let i = 0; i < elements; i++) {
-      response[i].id = i + 1;
-    }
-    stringArray = JSON.stringify(response);
-    fs.writeFile(contactsPath, stringArray);
-  });
+  readContacts()
+    .then((response) => {
+      const contact = { id: 0, name: name, email: email, phone: phone };
+      response.push(contact);
+      const elements = response.length;
+      for (let i = 0; i < elements; i++) {
+        response[i].id = i + 1;
+      }
+      stringArray = JSON.stringify(response);
+      fs.writeFile(contactsPath, stringArray);
+    })
+    .catch((error) => console.log(error));;
 }
 
 module.exports = {
