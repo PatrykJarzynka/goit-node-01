@@ -15,24 +15,24 @@ const argv = program.opts();
 
 function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
-    case 'list':
+    case "list":
       contacts.listContacts();
       break;
 
-    case 'get':
-      contacts.getContactById(id).then(response => console.log(response))
+    case "get":
+      contacts.getContactById(id);
       break;
 
-    case 'add':
-      contacts.addContact({name,email,phone})
+    case "add":
+      contacts.addContact({ name, email, phone });
       break;
 
-    case 'remove':
-      contacts.removeContact(id)
+    case "remove":
+      contacts.removeContact(id);
       break;
 
     default:
-      console.warn('\x1B[31m Unknown action type!');
+      console.warn("\x1B[31m Unknown action type!");
   }
 }
 
