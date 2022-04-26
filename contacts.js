@@ -26,13 +26,13 @@ function listContacts() {
 
 function getContactById(contactId) {
   return readContacts().then((response) => {
-    return response.find((contact) => contact.id === contactId);
+      return response.find((contact) => contact.id === contactId);
   });
 }
 
 function removeContact(contactId) {
   readContacts().then((response) => {
-    const newArray = response.filter((contact) => contact.id !== contactId);
+    const newArray = response.filter((contact) => contact.id.toString() !== contactId);
     const elements = newArray.length;
     for (let i = 0; i < elements; i++) {
       newArray[i].id = i + 1;
